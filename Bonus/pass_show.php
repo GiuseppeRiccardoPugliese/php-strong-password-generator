@@ -7,10 +7,9 @@
     <title>Document</title>
 
     <?php
-    require_once __DIR__ . '/index.php';
     require_once __DIR__ . '/functions.php';
     session_start();
-    $passwordCasuale = $_SESSION["lunghezza"];
+    $passwordCasuale = $_SESSION["psw"];
     ?>
 </head>
 

@@ -23,9 +23,26 @@
     <?php
     require_once __DIR__ . '/functions.php';
 
-    //MILESTONE 3 BONUS
-    $_SESSION["lunghezza"] = $passwordCasuale;
-    header('Location: ./pass_show.php');
+    // Verifico se la lunghezza e' settata, allora:
+    if (isset($_GET['lunghezza'])) {
+        $lunghezzaPassword = intval($_GET['lunghezza']); //Mi faccio ritornare un'intero
+
+        // Condizione per farsi' che la lunghezza sia valida (positiva e non troppo grande(128 in base ai BIT))
+        if ($lunghezzaPassword > 0 && $lunghezzaPassword <= 128) {
+            // Genera la password casuale
+            $passwordCasuale = generaPasswordCasuale($lunghezzaPassword);
+
+            //Redirect alla page pass_show.php
+            //MILESTONE 3 BONUS
+            $_SESSION["psw"] = $passwordCasuale;
+            header('Location: ./pass_show.php');
+        } else {
+            echo "La lunghezza della password deve essere un numero positivo non troppo grande.";
+        }
+    } else {
+        echo "Devi fornire la lunghezza della password.";
+    }
+
     ?>
 </body>
 
